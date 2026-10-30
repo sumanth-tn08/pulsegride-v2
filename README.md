@@ -1,392 +1,342 @@
-PulseGrid V2 🏥
+# 🏥 PulseGrid V2
 
-Intelligent Healthcare Operations & Decision Support Platform
+### Intelligent Healthcare Operations & Decision Support
 
-«From “we have a shortage” to “we know what to do next.”»
+> **From “we have a shortage” to “we know what to do next.”**
 
-PulseGrid V2 is an AI-powered healthcare operations platform designed to help healthcare administrators monitor live PHC operations, predict upcoming risks, investigate external information, and make informed decisions.
+PulseGrid V2 is an AI-powered healthcare operations platform that connects **40 PHCs across 4 zones in Bengaluru** into a unified operational network.
 
-The system connects 40 Primary Health Centres (PHCs) across 4 zones in Bengaluru into a unified operational network.
-
-Instead of only showing dashboards and alerts, PulseGrid follows a complete decision-support loop:
-
-Observe → Predict → Investigate → Reason → Act
+It combines **live operational data, predictive ML, AI reasoning, voice interaction, and external web investigation** to help healthcare administrators detect risks early and make better-informed decisions.
 
 ---
 
-🚨 The Problem
+## 💡 The Idea
 
-Healthcare operations can become difficult when critical information is scattered across different systems.
+Healthcare dashboards can tell administrators **what is happening**.
 
-For example:
+PulseGrid goes one step further:
 
-- A PHC's medicine stock is decreasing rapidly.
-- Patient demand is increasing.
-- Bed occupancy is approaching capacity.
-- Another PHC may have the required medicine.
-- If the internal network cannot help, external availability may need to be investigated.
+> **What is happening → What is likely to happen → What information do we need → What should we do next?**
 
-Traditional dashboards can show what is happening, but they don't necessarily help answer:
+The platform follows a simple decision-support loop:
 
-«“What should we do next?”»
-
-PulseGrid is designed to bridge that gap.
+### **Observe → Predict → Investigate → Reason → Act**
 
 ---
 
-💡 The Solution
+## 🎯 The Problem
 
-PulseGrid combines:
+Consider a PHC where medicine consumption is increasing rapidly.
 
-- 🏥 Live PHC operational data
-- 📈 Machine Learning predictions
-- 🤖 AI-powered reasoning
-- 🔎 External web investigation through TinyFish MCP
-- 🎙️ Voice interaction using Whisper
-- 👤 Human approval and decision-making
+The operator needs to know:
 
-The platform first checks internal healthcare resources, then investigates external sources when necessary, and finally provides an explainable recommendation.
+* Will the medicine run out soon?
+* Is another PHC able to provide it?
+* Is there availability elsewhere in the network?
+* If the network cannot help, what external options exist?
+* What action should the administrator consider?
 
----
+Normally, answering these questions can require checking multiple systems and sources.
 
-🏗️ System Overview
-
-                    PULSEGRID V2
-                         │
-          ┌──────────────┴──────────────┐
-          │                             │
-     PHC PORTAL                 HEALTH ADMIN PORTAL
-          │                             │
-          └──────────────┬──────────────┘
-                         │
-                   LIVE OPERATIONS
-                         │
-                    ┌────┴────┐
-                    │ Supabase │
-                    └────┬────┘
-                         │
-              ┌──────────┴──────────┐
-              │                     │
-         ML Predictions         AI Assistant
-              │                     │
-     ┌────────┴────────┐       Groq GPT-OSS
-     │                 │            │
-Medicine Risk     Bed Forecast      │
-     │                 │            │
-     └────────┬────────┘            │
-              │                     │
-              └──────────┬──────────┘
-                         │
-                  Internal Search
-                         │
-                  If insufficient
-                         │
-                 TinyFish MCP
-                         │
-                  External Evidence
-                         │
-                         ▼
-                AI Recommendation
-                         │
-                         ▼
-                  Human Decision
+**PulseGrid brings these steps into one workflow.**
 
 ---
 
-🎯 Core Workflow
+# 🚀 What PulseGrid Does
 
-1. Observe
+### 🏥 Live Operations
 
-PulseGrid continuously monitors:
+Monitor the current state of:
 
-- Medicine availability
-- Medicine consumption
-- Bed occupancy
-- PHC operational status
-- Network-wide conditions
+* Medicine availability
+* Medicine consumption
+* Bed occupancy
+* PHC operational conditions
 
----
+### 📈 Predictive Analytics
 
-2. Predict
+Machine learning identifies:
 
-Machine Learning models analyze historical patterns to predict:
+* Medicine stockout risk
+* Future bed occupancy pressure
 
-Medicine Stockout Risk
+### 🤖 AI Decision Support
 
-The system considers factors such as:
+Groq's **GPT-OSS 120B** analyzes the current situation and provides contextual recommendations.
 
-- Historical consumption
-- Current stock
-- Demand patterns
-- Incoming stock
+### 🔎 External Investigation
 
-and estimates the possibility of a future stockout.
+When internal PHC data is insufficient, **TinyFish MCP** can investigate relevant external websites and bring back current web evidence.
 
-Bed Occupancy
+### 🎙️ Voice Interaction
 
-Historical admissions and occupancy patterns are used to identify potential future bed pressure.
+Users can interact with the assistant through voice using **Whisper-large-v3**.
 
-«ML answers: “What is likely to happen?”»
+### 👤 Human-in-the-Loop
 
----
-
-3. Investigate
-
-When a PHC needs a medicine, PulseGrid first searches its own network.
-
-It can identify availability across:
-
-- The same PHC
-- The same zone
-- Other zones
-- The wider PHC network
-
-If the internal network cannot satisfy the requirement, PulseGrid can investigate relevant external websites using TinyFish MCP.
-
-«TinyFish answers: “What current information exists outside our system?”»
+AI provides recommendations, but the **final decision remains with the responsible healthcare administrator**.
 
 ---
 
-4. Reason
+# 🧠 How It Works
 
-PulseGrid uses Groq's GPT-OSS 120B as the reasoning layer.
-
-The AI can combine:
-
-- Current operational data
-- ML predictions
-- Internal PHC availability
-- External web evidence
-
-and produce a contextual recommendation.
-
-«AI answers: “What does this situation mean, and what options should we consider?”»
-
----
-
-5. Act
-
-PulseGrid does not automatically make critical healthcare decisions.
-
-The responsible human authority reviews:
-
-- Current situation
-- Predictions
-- Internal availability
-- External evidence
-- AI recommendation
-
-and then approves or rejects the proposed action.
-
----
-
-🖥️ Two Portals
-
-🏥 PHC Portal
-
-Designed for PHC operators and administrators.
-
-Features
-
-- Monitor medicine stock
-- Monitor medicine risk
-- Monitor bed occupancy
-- Update medicine consumption/stock
-- Update bed occupancy
-- View predictions
-- AI assistant
-- Voice input
-- Search medicine across PHCs
-- Cross-zone availability search
-- External investigation through TinyFish
-- Submit operational issues/recommendations
+```text
+                    ┌─────────────────────┐
+                    │   LIVE PHC DATA     │
+                    │ Medicine + Beds     │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │    ML PREDICTION    │
+                    │ Stockout + Bed Risk │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ INTERNAL NETWORK    │
+                    │ Search 40 PHCs      │
+                    └──────────┬──────────┘
+                               │
+                     Need more information?
+                         ┌─────┴─────┐
+                        YES          NO
+                         │            │
+                         ▼            │
+                 ┌──────────────┐     │
+                 │ TinyFish MCP │     │
+                 │ Web Evidence │     │
+                 └──────┬───────┘     │
+                        │              │
+                        └──────┬───────┘
+                               ▼
+                    ┌─────────────────────┐
+                    │   GROQ GPT-OSS      │
+                    │   AI REASONING      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ RECOMMENDATION      │
+                    │ + Supporting Data   │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ HUMAN DECISION      │
+                    │ Approve / Reject    │
+                    └─────────────────────┘
+```
 
 ---
 
-🌐 Health Administrator Portal
+# 🏥 Two Operational Portals
 
-Designed for network-level healthcare administrators.
+## PHC Portal
 
-Features
+Built for **PHC Operators / PHC Administrators**.
 
-- Monitor all 4 zones
-- Monitor all 40 PHCs
-- Compare PHC conditions
-- Monitor medicine risks
-- Monitor bed occupancy
-- View predictive analytics
-- Review alerts
-- Investigate external information
-- Review AI recommendations
-- Approve or reject proposed actions
+Users can:
 
----
-
-🤖 AI Architecture
-
-PulseGrid intentionally separates the responsibilities of different AI components.
-
-Component| Responsibility
-Machine Learning| Predict future medicine stockout and bed occupancy risk
-Groq GPT-OSS 120B| Reasoning, analysis and decision support
-Whisper-large-v3| Voice → text
-TinyFish MCP| External web investigation
-Supabase| Operational data and system state
-Human Administrator| Final decision and approval
-
-This separation prevents the system from treating an LLM as the solution to every problem.
+* Monitor medicine stock
+* Monitor stockout risk
+* Monitor bed occupancy
+* Update medicine consumption and stock
+* Update bed occupancy
+* View predictive insights
+* Ask the AI assistant
+* Use voice input
+* Search medicine availability across PHCs
+* Search across zones
+* Trigger external investigation through TinyFish
+* Submit operational issues or recommendations
 
 ---
 
-🔎 TinyFish MCP
+## 🌐 Health Administrator Portal
+
+Built for **network-level healthcare administrators**.
+
+Users can:
+
+* Monitor all **4 zones / 40 PHCs**
+* Compare PHC conditions
+* Monitor medicine risks
+* Monitor network bed occupancy
+* View predictive analytics
+* Review alerts
+* Investigate external information
+* Review AI recommendations
+* Approve or reject proposed actions
+
+---
+
+# 🤖 AI Architecture
+
+PulseGrid does **not** use one AI model for everything.
+
+Each component has a specific responsibility:
+
+| Technology              | Role                                             |
+| ----------------------- | ------------------------------------------------ |
+| **Scikit-learn ML**     | Predict medicine stockout and bed occupancy risk |
+| **Groq GPT-OSS 120B**   | Reasoning, analysis and recommendations          |
+| **Whisper-large-v3**    | Voice → text                                     |
+| **TinyFish MCP**        | External web investigation                       |
+| **Supabase**            | Operational data and system state                |
+| **Human Administrator** | Final decision                                   |
+
+### The distinction
+
+**ML**
+
+> “What is likely to happen?”
+
+**AI**
+
+> “What does this situation mean and what options should we consider?”
+
+**TinyFish**
+
+> “What current information exists outside our system?”
+
+**Human**
+
+> “Should we actually take this action?”
+
+---
+
+# 🔎 TinyFish MCP
 
 TinyFish is used when PulseGrid needs information beyond its internal network.
 
-Example
+For example:
 
+```text
 Medicine shortage detected
-        ↓
+          ↓
 Search internal PHCs
-        ↓
-Internal availability insufficient
-        ↓
+          ↓
+Internal stock insufficient
+          ↓
 TinyFish MCP
-        ↓
-Search / Fetch / Navigate relevant websites
-        ↓
-Collect external evidence
-        ↓
-Groq AI reasoning
-        ↓
+          ↓
+Search / Fetch / Navigate
+          ↓
+External evidence
+          ↓
+Groq reasoning
+          ↓
 Recommendation
-        ↓
+          ↓
 Human approval
+```
 
-TinyFish therefore acts as an external investigation layer, rather than replacing the internal database or ML system.
+This makes TinyFish an **external investigation layer**, rather than a replacement for the internal healthcare database.
 
 ---
 
-🎙️ Voice Assistant
+# 🎙️ Voice Assistant
 
-PulseGrid supports voice-based interaction.
+PulseGrid supports voice-based interaction:
 
+```text
 User Voice
     ↓
 Whisper-large-v3
     ↓
 Text Query
     ↓
-PulseGrid AI Assistant
+AI Assistant
     ↓
 Internal Data / ML / TinyFish
     ↓
-AI Response
+Structured Response
+```
 
-The response is returned as text.
+For example:
 
-Example:
+> **“Find PHCs that currently have this medicine.”**
 
-«“Find nearby PHCs that currently have Cefixime.”»
-
-PulseGrid can search the internal network and provide the available options.
-
----
-
-📊 Live Operations
-
-PulseGrid supports continuously changing operational data.
-
-The system can process operational events such as:
-
-- Medicine consumption
-- Changing patient demand
-- Bed admissions
-- Bed discharges
-- Replenishment
-- Changing operational conditions
-
-These updates flow through the same backend pipeline as manual updates.
-
-Operational Update
-       ↓
-Backend
-       ↓
-Supabase
-       ↓
-Analytics
-       ↓
-ML Predictions
-       ↓
-Dashboard / Alerts
-
-This allows the dashboard and predictions to respond to changing operational conditions rather than relying only on static values.
+The system can search the internal network and provide relevant availability.
 
 ---
 
-🧠 Why PulseGrid?
+# 📊 Predictive Analytics
 
-Most healthcare dashboards focus on:
+## Medicine Stockout Prediction
 
-«“What is happening?”»
+Historical consumption and stock movement are used to identify potential stockout risk.
 
-PulseGrid focuses on:
+```text
+Historical Demand
+       +
+Consumption
+       +
+Current Stock
+       ↓
+Predicted Demand
+       ↓
+Stockout Risk
+```
 
-«“What is happening → What is likely to happen → What information do we need → What should we consider doing?”»
+## Bed Occupancy Prediction
 
-That creates a complete operational decision-support loop.
+Historical admissions and occupancy patterns are used to identify potential future pressure.
 
----
+```text
+Historical Admissions
+        +
+Occupancy Patterns
+        ↓
+Predicted Occupancy
+        ↓
+Early Warning
+```
 
-🛠️ Technology Stack
-
-Frontend
-
-- React
-- TypeScript
-- Vite
-
-Backend
-
-- Python
-- FastAPI
-
-Database
-
-- Supabase
-- PostgreSQL
-
-AI / ML
-
-- Groq
-- GPT-OSS 120B
-- Whisper-large-v3
-- Scikit-learn
-
-External Investigation
-
-- TinyFish
-- MCP
-
-Development
-
-- Git
-- GitHub
-
-Deployment
-
-- Vercel — Frontend
-- Render — Backend
+The models provide **decision-support signals**, not automatic medical decisions.
 
 ---
 
-🗺️ Network Structure
+# ⚡ Live Operations
 
-PulseGrid V2 models a healthcare network consisting of:
+PulseGrid can continuously process operational changes such as:
 
+* Medicine consumption
+* Changing patient demand
+* Admissions
+* Discharges
+* Replenishment
+* Changing PHC conditions
+
+These updates use the same underlying data pipeline as manual operations.
+
+```text
+Operational Event / Manual Update
+              ↓
+           Backend
+              ↓
+           Supabase
+              ↓
+      Analytics + ML
+              ↓
+       Dashboard / Alerts
+```
+
+This allows the system to react to changing operational conditions.
+
+---
+
+# 🗺️ Healthcare Network
+
+PulseGrid models:
+
+```text
 Bengaluru
 │
 ├── Zone 1
-│   └── 10 PHCs
+│   ├── PHC 01
+│   └── ... 10 PHCs
 │
 ├── Zone 2
 │   └── 10 PHCs
@@ -397,150 +347,186 @@ Bengaluru
 └── Zone 4
     └── 10 PHCs
 
-Total: 4 Zones / 40 PHCs
+        ↓
 
-Each PHC maintains operational information related to medicine availability and bed occupancy.
+40 PHCs Total
+```
+
+The zones provide organizational structure while the platform can search across the wider PHC network.
 
 ---
 
-🚀 Running Locally
+# 🛠️ Technology Stack
 
-1. Clone the repository
+### Frontend
 
+* React
+* TypeScript
+* Vite
+
+### Backend
+
+* Python
+* FastAPI
+
+### Database
+
+* Supabase
+* PostgreSQL
+
+### AI / ML
+
+* Groq
+* GPT-OSS 120B
+* Whisper-large-v3
+* Scikit-learn
+
+### Agent / Web Investigation
+
+* TinyFish
+* MCP
+
+### Deployment
+
+* Vercel
+* Render
+
+### Development
+
+* Git
+* GitHub
+
+---
+
+# 🔐 Security
+
+API keys and credentials are stored through environment variables.
+
+**Never commit production secrets to GitHub.**
+
+Use `.env.example` to document the required configuration without exposing credentials.
+
+---
+
+# 🚀 Getting Started
+
+## Clone
+
+```bash
 git clone https://github.com/sumanth-tn08/pulsegride-v2.git
 
 cd pulsegride-v2
+```
 
-2. Configure environment variables
+## Environment Variables
 
-Create the required ".env" files based on the provided environment configuration.
+Configure the required environment variables for:
 
-Typical services include:
-
+```env
 SUPABASE_URL=
 SUPABASE_KEY=
-
 GROQ_API_KEY=
-
 TINYFISH_API_KEY=
+```
 
-«Never commit real API keys or secrets to GitHub.»
+> Use the project's `.env.example` as the source of truth for the exact variables required by the current implementation.
 
-3. Install dependencies
+## Frontend
 
-Follow the dependency instructions inside the respective frontend and backend directories.
-
-Frontend
-
+```bash
 npm install
 npm run dev
+```
 
-Backend
+## Backend
 
-Create and activate a Python virtual environment, install the backend requirements, and start the FastAPI server using the project's configured entry point.
-
----
-
-☁️ Deployment
-
-PulseGrid V2 is designed for:
-
-GitHub
-   │
-   ├──────────────► Vercel
-   │                  │
-   │              Frontend
-   │                  │
-   └──────────────► Render
-                      │
-                   Backend
-                      │
-                  Supabase
-
-Environment variables must be configured separately on the deployment platforms.
+Create a Python virtual environment, install the backend dependencies, configure the environment variables, and start the FastAPI application using the project's configured entry point.
 
 ---
 
-🔐 Security
+# ☁️ Deployment Architecture
 
-PulseGrid uses environment variables for external service credentials.
-
-Never commit:
-
-- API keys
-- Database passwords
-- Service credentials
-- Private tokens
-- Production secrets
-
-Use ".env.example" to document required variables without exposing their values.
-
----
-
-🎥 Demonstration
-
-The main demonstration follows a real operational scenario:
-
-Medicine risk detected
-        ↓
-PHC checks internal network
-        ↓
-Available PHCs identified
-        ↓
-Internal stock insufficient
-        ↓
-TinyFish investigates external sources
-        ↓
-Evidence collected
-        ↓
-Groq analyzes the situation
-        ↓
-Recommendation generated
-        ↓
-Health Administrator reviews
-        ↓
-Decision approved / rejected
+```text
+                     GitHub
+                    /      \
+                   /        \
+                  ▼          ▼
+              Vercel       Render
+             Frontend      Backend
+                              │
+                              ▼
+                           Supabase
+                              │
+                 ┌────────────┼────────────┐
+                 ▼            ▼            ▼
+              Groq        TinyFish      ML Models
+```
 
 ---
 
-🏆 Hackathon Focus
+# 🎥 Demo Scenario
 
-PulseGrid V2 was designed around a simple question:
+The primary demonstration follows a medicine shortage scenario:
 
-«Can an AI system move healthcare operations from reactive monitoring toward proactive decision support?»
-
-The project demonstrates how predictive ML, LLM reasoning, external web investigation, live operational data, and human oversight can work together in one workflow.
+```text
+1. Medicine risk detected
+          ↓
+2. PHC checks internal network
+          ↓
+3. Available PHCs identified
+          ↓
+4. Internal availability insufficient
+          ↓
+5. TinyFish investigates external sources
+          ↓
+6. Evidence is collected
+          ↓
+7. Groq analyzes the situation
+          ↓
+8. Recommendation generated
+          ↓
+9. Health Administrator reviews
+          ↓
+10. Action approved / rejected
+```
 
 ---
 
-👨‍💻 Project
+# 🌟 Why PulseGrid?
 
-PulseGrid V2 — Intelligent Healthcare Operations & Decision Support
+PulseGrid is not designed to be just another healthcare dashboard.
 
-Built as a hackathon project with a focus on:
+It connects:
 
-- Healthcare operations
-- Predictive analytics
-- Agentic AI
-- MCP
-- AI-assisted decision support
-- Real-time operational workflows
+**Live Operations + Predictive ML + AI Reasoning + External Investigation + Human Decision-Making**
+
+into one workflow.
+
+The result is a system that moves from:
+
+> **Monitoring problems**
+
+to:
+
+> **Understanding → Predicting → Investigating → Recommending → Acting**
 
 ---
 
-🔗 Links
+# 📌 Project
 
-GitHub:
+### PulseGrid V2
+
+**Intelligent Healthcare Operations & Decision Support Platform**
+
+Built as a hackathon project exploring the use of **AI, Machine Learning, Agentic Workflows and MCP** for proactive healthcare operations.
+
+### Repository
+
+**GitHub:**
 https://github.com/sumanth-tn08/pulsegride-v2
 
-Frontend:
-Add deployed Vercel URL here
-
-Backend:
-Add deployed Render URL here
-
 ---
 
-⭐ If you find the project interesting
+## ⭐ Support
 
-Consider giving the repository a ⭐ on GitHub.
+If you find PulseGrid interesting, consider giving the repository a ⭐.
