@@ -1,5 +1,8 @@
 # PulseGrid V2 — Intelligent Healthcare Operations Network
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsumanth-tn08%2Fpulsegride-v2)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/sumanth-tn08/pulsegride-v2)
+
 **PulseGrid V2** connects **40 Primary Health Centres (PHCs) across Bengaluru, Karnataka, India** into a single live operational network.
 
 The system continuously monitors:
