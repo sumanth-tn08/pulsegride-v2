@@ -20,3 +20,4 @@ services:
         value: https://agent.tinyfish.ai/mcp
       - key: TAVILY_API_KEY
         sync: false
+
